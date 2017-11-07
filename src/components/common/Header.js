@@ -15,7 +15,7 @@ const Header = ({loading}) => {
   );
 };
 
-Header.protTypes = {
+Header.propTypes = {
   loading: PropTypes.bool.isRequired
 };
 
