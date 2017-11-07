@@ -1,7 +1,7 @@
 {
-  "name": "pluralsight-redux-starter",
+  "name": "react-demo-app",
   "version": "1.0.0",
-  "description": "Starter kit for React and Redux Pluralsight course by Cory House",
+  "description": "Starter kit for React and Redux",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel test:watch open:src lint:watch",
@@ -17,12 +17,13 @@
     "build": "babel-node tools/build.js",
     "postbuild": "babel-node tools/distServer.js"
   },
-  "author": "Cory House",
+  "author": "Igor Novelletto",
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "6.8.0",
     "bootstrap": "3.3.6",
     "jquery": "2.2.3",
+    "material-ui": "latest",
     "react": "15.0.2",
     "react-dom": "15.0.2",
     "react-redux": "4.4.5",
@@ -73,6 +74,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/coryhouse/pluralsight-redux-starter"
+    "url": "https://github.com/inovelletto/react-demo-app"
   }
 }
