@@ -1,24 +1,24 @@
-import React, {PropTypes} from 'react';
-import { Link, IndexLink} from 'react-router';
+import React, { PropTypes } from 'react';
+import { Link, IndexLink } from 'react-router';
 import LoadingDots from './LoadingDots';
-import {AppBar, Tabs, Tab, Drawer} from 'material-ui';
+import { AppBar, Drawer, MenuItem } from 'material-ui';
 
 const appBarStyle = {
-  position: 'fixed'
+  position: 'fixed',
+  left: 0
 };
 
-const Header = ({loading}) => {
-  return (
-    <AppBar title="Test" style={appBarStyle} showMenuIconButton={false}>
-      <Tabs>
-        <Tab label="Tab 1"/>
-      </Tabs>
-    </AppBar>
+const Header = ({open, appBarClick}) => {
+  return (<div>
+    <Drawer docked={false} open={open}/>
+    <AppBar title="Test" style={appBarStyle} onLeftIconButtonTouchTap={appBarClick} />
+  </div>
   );
 };
 
 Header.propTypes = {
-  loading: PropTypes.bool.isRequired
+  open: PropTypes.bool,
+  appBarClick: PropTypes.func
 };
 
 export default Header;
