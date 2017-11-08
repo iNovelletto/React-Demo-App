@@ -1,33 +1,41 @@
-//This components handles the App template used on every page.
+/* eslint-disable import/no-named-as-default */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Header from './common/Header';
+import { Switch, NavLink, Route } from 'react-router-dom';
+import HomePage from './HomePage';
+import FuelSavingsPage from '../containers/FuelSavingsPage';
+import AboutPage from './AboutPage';
+import NotFoundPage from './NotFoundPage';
+
+// This is a class-based component because the current
+// version of hot reloading won't hot reload a stateless
+// component at the top-level.
 
 class App extends React.Component {
   render() {
+    const activeStyle = { color: 'blue' };
     return (
-      <MuiThemeProvider>
+      <div>
         <div>
-          <Header />
-          {this.props.children}
+          <NavLink exact to="/" activeStyle={activeStyle}>Home</NavLink>
+          {' | '}
+          <NavLink to="/fuel-savings" activeStyle={activeStyle}>Demo App</NavLink>
+          {' | '}
+          <NavLink to="/about" activeStyle={activeStyle}>About</NavLink>
         </div>
-      </MuiThemeProvider>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/fuel-savings" component={FuelSavingsPage} />
+          <Route path="/about" component={AboutPage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </div>
     );
   }
 }
 
 App.propTypes = {
-  children: PropTypes.object.isRequired,
-  loading: PropTypes.bool
+  children: PropTypes.element
 };
 
-function mapStateToProps(state, ownProps) {
-  return {
-    loading: state.ajaxCallsInProgress > 0
-  };
-}
-
-export default connect(mapStateToProps)(App);
+export default App;
