@@ -48,9 +48,11 @@ class App extends React.Component {
     return (
       <MuiThemeProvider theme={styles} >
           <Drawer open={this.state.left} onRequestClose={() => this.toggleDrawer(false)}>
-            <IconButton>
-              <Schedule style={iconStyle}><NavLink to="/about" /></Schedule>
-            </IconButton>
+            <NavLink to="/about">
+              <IconButton>
+                <Schedule style={iconStyle}></Schedule>
+              </IconButton>
+            </NavLink>
             <IconButton>
             <Storage style={iconStyle} />
             </IconButton>
