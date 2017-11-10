@@ -10,12 +10,12 @@ import { Menu , Schedule, Storage, BugReport } from 'material-ui-icons';
 //import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 //import { fade } from 'material-ui/utils/colorManipulator';
 
-// import { Switch, NavLink, Route } from 'react-router-dom';
-// import HomePage from './HomePage';
-// import FuelSavingsPage from '../containers/FuelSavingsPage';
-// import AboutPage from './AboutPage';
-// import NotFoundPage from './NotFoundPage';
-//import Master from './Master';
+ import { Switch, NavLink, Route, Link } from 'react-router-dom';
+import HomePage from './HomePage';
+ import FuelSavingsPage from '../containers/FuelSavingsPage';
+ import AboutPage from './AboutPage';
+ import NotFoundPage from './NotFoundPage';
+
 const styles = createMuiTheme({
   palette: createPalette({
     "primary": orange,
@@ -49,7 +49,7 @@ class App extends React.Component {
       <MuiThemeProvider theme={styles} >
           <Drawer open={this.state.left} onRequestClose={() => this.toggleDrawer(false)}>
             <IconButton>
-              <Schedule style={iconStyle} />
+              <Schedule style={iconStyle}><NavLink to="/about" /></Schedule>
             </IconButton>
             <IconButton>
             <Storage style={iconStyle} />
@@ -71,6 +71,12 @@ class App extends React.Component {
               </div>
             </Toolbar>
           </AppBar>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/fuel-savings" component={FuelSavingsPage} />
+            <Route path="/about" component={AboutPage} />
+            <Route component={NotFoundPage} />
+          </Switch> */
       </MuiThemeProvider>
     );
   }
