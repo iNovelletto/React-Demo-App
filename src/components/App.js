@@ -10,11 +10,11 @@ import { Menu , Schedule, Storage, BugReport } from 'material-ui-icons';
 //import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 //import { fade } from 'material-ui/utils/colorManipulator';
 
- import { Switch, NavLink, Route, Link } from 'react-router-dom';
+import { Switch, NavLink, Route, Link } from 'react-router-dom';
 import HomePage from './HomePage';
- import FuelSavingsPage from '../containers/FuelSavingsPage';
- import AboutPage from './AboutPage';
- import NotFoundPage from './NotFoundPage';
+import FuelSavingsPage from '../containers/FuelSavingsPage';
+import AboutPage from './AboutPage';
+import NotFoundPage from './NotFoundPage';
 
 const styles = createMuiTheme({
   palette: createPalette({
@@ -29,28 +29,30 @@ const iconStyle = {
   color: 'white'
 };
 
-// This is a class-based component because the current
-// version of hot reloading won't hot reload a stateless
-// component at the top-level.
-
 class App extends React.Component {
   state = {
-    left: false
+    drawerExpand: -1,
+    drawerWidth: null
   };
 
-  toggleDrawer = (open) => {
+  expandDrawer = () => {
     this.setState({
-      left: open
+      drawerExpand: this.state.drawerExpand * -1
     });
   };
-
+ 
   render() {
     return (
       <MuiThemeProvider theme={styles} >
-          <Drawer open={this.state.left} onRequestClose={() => this.toggleDrawer(false)}>
+          <Drawer
+            classes={this.state.drawerExpand == 1 ? {paper: 'drawerStyle drawerStyleOpen'} : {paper: 'drawerStyle'} }
+            type="persistent" 
+            open='open'             
+          >
             <NavLink to="/about">
-              <IconButton>
+              <IconButton tooltip="Schedules">
                 <Schedule style={iconStyle}></Schedule>
+                {this.state.drawerExpand==1 ? <Typography type="h4">Schedules</Typography> : null}
               </IconButton>
             </NavLink>
             <IconButton>
@@ -62,7 +64,7 @@ class App extends React.Component {
           </Drawer>
           <AppBar>
             <Toolbar >
-              <IconButton onClick={() => this.toggleDrawer(true)} aria-label="Menu">
+              <IconButton onClick={() => this.expandDrawer()}>
                 <Menu />
               </IconButton>
               <Typography type="title">

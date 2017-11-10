@@ -34,3 +34,20 @@ td.fuel-savings-label { width: 175px; }
   position: absolute;
   right: 0;
 }
+
+.drawerStyle {
+  top: 64px !important
+}
+
+@keyframes expandDrawer {
+  from {width: 1% !important;  }
+  to {width: 10% !important;  }
+}
+
+.drawerStyleOpen {
+  width: 10% !important; 
+  animation-name: expandDrawer;
+  animation-duration: 4s;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+}
