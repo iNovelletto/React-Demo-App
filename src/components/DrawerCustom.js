@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {  IconButton, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText } from 'material-ui';
-import { Schedule, Storage, BugReport, ChevronLeft, ChevronRight } from 'material-ui-icons';
+import { BeachAccess, ChevronLeft, ChevronRight, Dashboard, LibraryBooks, Schedule, Storage } from 'material-ui-icons';
 import { NavLink } from 'react-router-dom';
 
 const DrawerCustom = ({open, handleDrawerClose, classes, theme}) => {
@@ -24,20 +24,32 @@ const DrawerCustom = ({open, handleDrawerClose, classes, theme}) => {
             <NavLink to="/About">
               <ListItem button>
                 <ListItemIcon>
-                  <Schedule />
+                  <Dashboard />
                 </ListItemIcon>
-                <ListItemText primary="Schedules" />
+                <ListItemText primary="Dashboard" />
               </ListItem>
             </NavLink>
             <ListItem button>
               <ListItemIcon>
-                <Storage />
+                <LibraryBooks />
               </ListItemIcon>
               <ListItemText primary="Test Cases" />
             </ListItem>
             <ListItem button>
               <ListItemIcon>
-                <BugReport />
+                <BeachAccess />
+              </ListItemIcon>
+              <ListItemText primary="Test Suites" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <Schedule />
+              </ListItemIcon>
+              <ListItemText primary="Schedule" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <Storage />
               </ListItemIcon>
               <ListItemText primary="Reports" />
             </ListItem>
