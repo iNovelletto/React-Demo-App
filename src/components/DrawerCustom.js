@@ -21,7 +21,7 @@ const DrawerCustom = ({open, handleDrawerClose, classes, theme}) => {
           </div>
           <Divider />
           <List>
-            <NavLink to="/HomePage">
+            <NavLink to="/About">
               <ListItem button>
                 <ListItemIcon>
                   <Schedule />
