@@ -2,21 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import createPalette from 'material-ui/styles/createPalette';
 import createMuiTheme from 'material-ui/styles/createMuiTheme';
-import { MuiThemeProvider } from 'material-ui/styles';
-import { AppBar, Toolbar, Typography, Button, IconButton, Drawer } from 'material-ui';
+import { MuiThemeProvider, withStyles } from 'material-ui/styles';
+//import { MuiThemeProvider } from 'material-ui/styles';
 import { orange, amber, red } from 'material-ui/colors';
-import { Menu , Schedule, Storage, BugReport } from 'material-ui-icons';
-// import * as Colors from 'material-ui/colors';
-//import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-//import { fade } from 'material-ui/utils/colorManipulator';
+import Master from './Master';
+import { styles } from '../styles/styles';
 
-import { Switch, NavLink, Route, Link } from 'react-router-dom';
-import HomePage from './HomePage';
-import FuelSavingsPage from '../containers/FuelSavingsPage';
-import AboutPage from './AboutPage';
-import NotFoundPage from './NotFoundPage';
-
-const styles = createMuiTheme({
+const customTheme = createMuiTheme({
   palette: createPalette({
     "primary": orange,
     "secondary": amber,
@@ -25,73 +17,22 @@ const styles = createMuiTheme({
   })
 });
 
-const iconStyle = {
-  color: 'white'
-};
-
 class App extends React.Component {
-  state = {
-    drawerExpand: -1,
-    drawerWidth: null
-  };
-
-  expandDrawer = () => {
-    this.setState({
-      drawerExpand: this.state.drawerExpand * -1
-    });
-  };
- 
   render() {
     return (
-      <MuiThemeProvider theme={styles} >
-          <Drawer
-            classes={this.state.drawerExpand == 1 ? {paper: 'drawerStyle drawerStyleOpen'} : {paper: 'drawerStyle'} }
-            type="persistent" 
-            open='open'             
-          >
-            <NavLink to="/about">
-              <IconButton tooltip="Schedules">
-                <Schedule style={iconStyle}></Schedule>
-                {this.state.drawerExpand==1 ? <Typography type="h4">Schedules</Typography> : null}
-              </IconButton>
-            </NavLink>
-            <IconButton>
-            <Storage style={iconStyle} />
-            </IconButton>
-            <IconButton>
-            <BugReport style={iconStyle} />
-            </IconButton>
-          </Drawer>
-          <AppBar>
-            <Toolbar >
-              <IconButton onClick={() => this.expandDrawer()}>
-                <Menu />
-              </IconButton>
-              <Typography type="title">
-                Title
-              </Typography>
-              <div className="loginButton">
-                <Button >Login</Button>
-              </div>
-            </Toolbar>
-          </AppBar>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/fuel-savings" component={FuelSavingsPage} />
-            <Route path="/about" component={AboutPage} />
-            <Route component={NotFoundPage} />
-          </Switch> */
+      <MuiThemeProvider theme={customTheme} >
+        <Master {...this.props}/>
       </MuiThemeProvider>
     );
   }
 }
 
 App.propTypes = {
-  children: PropTypes.element
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired
 };
 
-//export default withStyles(styles)(App);
-export default App;
+export default withStyles(styles, { withTheme: true })(App);
 
   //const activeStyle = { color: 'blue' };
 
