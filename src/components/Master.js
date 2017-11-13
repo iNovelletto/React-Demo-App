@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import FuelSavingsPage from '../containers/FuelSavingsPage';
 import AboutPage from './AboutPage';
 import NotFoundPage from './NotFoundPage';
 import AppBarCustom from './AppBarCustom';
 import DrawerCustom from './DrawerCustom';
+import LoginForm from './LoginForm';
 
 class Master extends React.Component {
   state = {
@@ -44,6 +45,8 @@ class Master extends React.Component {
                   <FuelSavingsPage {...classes} />)}/>
                 <Route path="/about" render={(classes) => (
                   <AboutPage {...classes} />)}/>
+                <Route path="/login" render={(classes) => (
+                  <LoginForm {...classes} />)}/>
                 <Route component={NotFoundPage} />
               </Switch>
             </main>

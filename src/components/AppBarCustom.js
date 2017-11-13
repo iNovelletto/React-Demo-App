@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { AppBar, Button, IconButton, Toolbar, Typography  } from 'material-ui';
 import { Menu, Flag, MailOutline } from 'material-ui-icons';
+import { Link } from 'react-router-dom';
 
 const AppBarCustom = ({classes, open, handleDrawerOpen}) => {
   return (
@@ -21,7 +22,9 @@ const AppBarCustom = ({classes, open, handleDrawerOpen}) => {
           <Flag />
         </IconButton>
         <Button className={classes.appBarLoginButton}>
+          <Link to="/login">
           Login
+          </Link>
         </Button>
       </Toolbar>
     </AppBar>

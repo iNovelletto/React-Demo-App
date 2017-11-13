@@ -31,7 +31,7 @@ export const styles = theme => ({
   },
   appBarLoginButton: {
     position: 'absolute',
-    right: '0px'
+    right: '0'
   },
   appBarMailButton: {
     position: 'absolute',
@@ -80,10 +80,15 @@ export const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
   },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: '200'
+  },
   content: {
     width: '100%',
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: 'dimgrey',
     padding: 24,
     height: 'calc(100% - 56px)',
     marginTop: 56,
