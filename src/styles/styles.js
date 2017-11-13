@@ -25,6 +25,18 @@ export const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
+  appBarFlagButton: {
+    position: 'absolute',
+    right: '80px'
+  },
+  appBarLoginButton: {
+    position: 'absolute',
+    right: '0px'
+  },
+  appBarMailButton: {
+    position: 'absolute',
+    right: '110px'
+  },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,

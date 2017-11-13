@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { AppBar, Toolbar, Typography, Button, IconButton } from 'material-ui';
-import { Menu } from 'material-ui-icons';
+import { AppBar, Button, IconButton, Toolbar, Typography  } from 'material-ui';
+import { Menu, Flag, MailOutline } from 'material-ui-icons';
 
 const AppBarCustom = ({classes, open, handleDrawerOpen}) => {
   return (
@@ -14,9 +14,15 @@ const AppBarCustom = ({classes, open, handleDrawerOpen}) => {
         <Typography type="title">
           Testing
         </Typography>
-        <div className="loginButton">
-          <Button >Login</Button>
-        </div>
+        <IconButton className={classes.appBarMailButton}>
+          <MailOutline />
+        </IconButton>
+        <IconButton className={classes.appBarFlagButton}>
+          <Flag />
+        </IconButton>
+        <Button className={classes.appBarLoginButton}>
+          Login
+        </Button>
       </Toolbar>
     </AppBar>
   );

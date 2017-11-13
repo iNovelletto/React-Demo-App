@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import HomePage from './HomePage';
 import FuelSavingsPage from '../containers/FuelSavingsPage';
 import AboutPage from './AboutPage';
@@ -38,9 +38,12 @@ class Master extends React.Component {
               theme={theme}/>
             <main className={classes.content}>
               <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route path="/fuel-savings" component={FuelSavingsPage} />
-                <Route path="/about" component={AboutPage} />
+                <Route exact path="/" render={(classes) => (
+                  <HomePage {...classes} />)}/>
+                <Route path="/fuel-savings" render={(classes) => (
+                  <FuelSavingsPage {...classes} />)}/>
+                <Route path="/about" render={(classes) => (
+                  <AboutPage {...classes} />)}/>
                 <Route component={NotFoundPage} />
               </Switch>
             </main>
