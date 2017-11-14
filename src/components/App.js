@@ -3,13 +3,14 @@ import createPalette from 'material-ui/styles/createPalette';
 import createMuiTheme from 'material-ui/styles/createMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import withStyles from 'material-ui/styles/withStyles';
-import { orange, amber, red } from 'material-ui/colors';
+import { grey, orange, amber, red } from 'material-ui/colors';
 import Master from './Master';
 import { styles } from '../styles/styles';
 
 const customTheme = createMuiTheme({
   palette: createPalette({
     "primary": orange,
+    "accent": grey,
     "secondary": amber,
     "error": red,
     "type": "dark"

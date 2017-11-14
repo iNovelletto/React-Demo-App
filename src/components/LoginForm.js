@@ -15,28 +15,28 @@ class LoginForm extends React.Component {
     dialogMessage: ''
   };
 
-  handleChange = name => event => {    
+  handleChange = name => event => {
     this.setState({
-      [name]: event.target.value      
-    });        
+      [name]: event.target.value
+    });
   };
- 
+
   submitLogin = () => {
     if(this.state.userName === 'vfrias') {
-      this.setState({ 
+      this.setState({
         dialogTitle: 'Welcome!',
         dialogMessage: 'Frias, the React master!'
       });
     } else {
-      this.setState({ 
+      this.setState({
         dialogTitle: 'Error!',
         dialogMessage: 'Wrong Username or Password'
       });
     }
 
-    this.handleDialogOpen();    
+    this.handleDialogOpen();
 
-    this.setState({ 
+    this.setState({
       userName: '',
       password: ''
     });
@@ -55,7 +55,7 @@ class LoginForm extends React.Component {
 
     return (
       <div>
-        <CustomInfoDialog 
+        <CustomInfoDialog
           open={this.state.dialogOpen}
           title={this.state.dialogTitle}
           message={this.state.dialogMessage}
@@ -72,7 +72,7 @@ class LoginForm extends React.Component {
             spacing={24}>
                 <Grid item>
                   <AccountCircle style={{ width: 100, height: 100 }}/>
-                </Grid>                       
+                </Grid>
                 <Grid item>
                   <Tooltip title="Insert your Login!" placement="bottom" enterDelay={300} leaveDelay={100}>
                   <TextField
@@ -94,16 +94,16 @@ class LoginForm extends React.Component {
                   </Tooltip>
                 </Grid >
                 <Grid item>
-                  <Tooltip 
-                  title={(this.state.userName && this.state.password) ? "Login to Apple" : "Login Info missing!"}//"Login to Apple" 
-                  placement="right" 
-                  enterDelay={300} 
+                  <Tooltip
+                  title={(this.state.userName && this.state.password) ? "Login to Apple" : "Login Info missing!"}//"Login to Apple"
+                  placement="right"
+                  enterDelay={300}
                   leaveDelay={100}>
                     <div>
-                      <Button 
+                      <Button
                       disabled={!(this.state.userName && this.state.password)}
-                      raised 
-                      color="default"
+                      raised
+                      color="primary"
                       onClick={() => this.submitLogin()}>
                         Login
                       </Button>

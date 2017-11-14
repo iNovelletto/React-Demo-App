@@ -25,7 +25,7 @@ class TestCasePage extends React.Component {
           />
         </Grid>
         <Grid item xs={3}>
-          <Button color={'default'} raised>
+          <Button color={'primary'} raised>
             {'New Product'}
           </Button>
         </Grid>
@@ -57,7 +57,7 @@ class TestCasePage extends React.Component {
           />
         </Grid>
         <Grid item xs={3}>
-        <Button color={'default'} raised>
+        <Button color={'primary'} raised>
           {'New Module'}
         </Button>
       </Grid>

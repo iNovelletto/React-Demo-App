@@ -50,7 +50,7 @@ export const styles = theme => ({
     marginLeft: 12,
     marginRight: 36,
   },
-  
+
   hide: {
     display: 'none',
   },
@@ -93,7 +93,7 @@ export const styles = theme => ({
   content: {
     width: '100%',
     flexGrow: 1,
-    backgroundColor: 'dimgrey',
+    backgroundColor: 'lightgrey',
     padding: 24,
     height: 'calc(100% - 56px)',
     marginTop: 56,
@@ -103,9 +103,9 @@ export const styles = theme => ({
     },
   },
   loginFormPaper: {
-    padding: '20px',  
-    paddingLeft: '50px',  
-    paddingRight: '50px',  
+    padding: '20px',
+    paddingLeft: '50px',
+    paddingRight: '50px',
     marginTop: '80px',
   }
 });
