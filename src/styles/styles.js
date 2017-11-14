@@ -87,6 +87,9 @@ export const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: '200'
   },
+  nested: {
+    paddingLeft: theme.spacing.unit * 4
+  },
   content: {
     width: '100%',
     flexGrow: 1,

@@ -5,11 +5,11 @@ import { AppBar, Button, IconButton, Toolbar, Typography  } from 'material-ui';
 import { Menu, Flag, MailOutline } from 'material-ui-icons';
 import { Link } from 'react-router-dom';
 
-const AppBarCustom = ({classes, open, handleDrawerOpen}) => {
+const AppBarCustom = ({classes, open, handleDrawer}) => {
   return (
     <AppBar className={classNames(classes.appBar, open && classes.appBarShift)}>
       <Toolbar disableGutters={!open}>
-        <IconButton onClick={() => handleDrawerOpen()}>
+        <IconButton onClick={handleDrawer}>
           <Menu />
         </IconButton>
         <Typography type="title">
@@ -22,8 +22,8 @@ const AppBarCustom = ({classes, open, handleDrawerOpen}) => {
           <Flag />
         </IconButton>
         <Link to="/login">
-          <Button className={classes.appBarLoginButton}>          
-            Login         
+          <Button className={classes.appBarLoginButton}>
+            Login
           </Button>
         </Link>
       </Toolbar>
@@ -34,7 +34,7 @@ const AppBarCustom = ({classes, open, handleDrawerOpen}) => {
 AppBarCustom.propTypes = {
   open: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
-  handleDrawerOpen: PropTypes.func.isRequired
+  handleDrawer: PropTypes.func.isRequired
 };
 
 export default AppBarCustom;

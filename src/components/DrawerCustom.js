@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {  IconButton, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText } from 'material-ui';
-import { BeachAccess, ChevronLeft, ChevronRight, Dashboard, LibraryBooks, Schedule, Storage } from 'material-ui-icons';
+import Collapse from 'material-ui/transitions/Collapse';
+import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText } from 'material-ui';
+import { BeachAccess, ChevronLeft, ChevronRight, Dashboard, ExpandLess, ExpandMore, LibraryAdd, LibraryBooks, Schedule, Storage } from 'material-ui-icons';
 import { NavLink } from 'react-router-dom';
 
-const DrawerCustom = ({open, handleDrawerClose, classes, theme}) => {
+const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes, theme}) => {
     return (
       <Drawer
         type="permanent"
@@ -15,13 +16,13 @@ const DrawerCustom = ({open, handleDrawerClose, classes, theme}) => {
         open={open}>
         <div className={classes.drawerInner}>
           <div className={classes.drawerHeader}>
-            <IconButton onClick={handleDrawerClose}>
+            <IconButton onClick={() => { if(openCollapse)handleCollapse(); handleDrawer(); }}>
               {theme.direction === 'rtl' ? <ChevronRight /> : <ChevronLeft />}
             </IconButton>
           </div>
           <Divider />
           <List>
-            <NavLink to="/About">
+            <NavLink to="/About" style={{ textDecoration: 'none' }}>
               <ListItem button>
                 <ListItemIcon>
                   <Dashboard />
@@ -34,7 +35,22 @@ const DrawerCustom = ({open, handleDrawerClose, classes, theme}) => {
                 <LibraryBooks />
               </ListItemIcon>
               <ListItemText primary="Test Cases" />
+              <ListItemIcon onClick={handleCollapse}>
+              {openCollapse ? <ExpandLess /> : <ExpandMore />}
+              </ListItemIcon>
             </ListItem>
+            <Collapse component="li" in={openCollapse} transitionDuration="auto" unmountOnExit>
+              <List disablePadding>
+                <NavLink to="/testcase" style={{ textDecoration: 'none' }}>
+                  <ListItem button className={classes.nested}>
+                    <ListItemIcon>
+                      <LibraryAdd />
+                    </ListItemIcon>
+                    <ListItemText inset primary="Add"/>
+                  </ListItem>
+                </NavLink>
+              </List>
+            </Collapse>
             <ListItem button>
               <ListItemIcon>
                 <BeachAccess />
@@ -63,7 +79,7 @@ DrawerCustom.propTypes = {
   open: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  handleDrawerClose: PropTypes.func.isRequired
+  handleDrawer: PropTypes.func.isRequired
 };
 
 export default DrawerCustom;

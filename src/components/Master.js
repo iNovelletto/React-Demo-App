@@ -8,18 +8,20 @@ import NotFoundPage from './NotFoundPage';
 import AppBarCustom from './AppBarCustom';
 import DrawerCustom from './DrawerCustom';
 import LoginForm from './LoginForm';
+import TestCasePage from './TestCasePage';
 
 class Master extends React.Component {
   state = {
     open: false,
+    openCollapse: false
   };
 
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
+  handleDrawer = () => {
+    this.setState({ open: !this.state.open });
   };
 
-  handleDrawerClose = () => {
-    this.setState({ open: false });
+  handleCollapse = () => {
+    this.setState({ openCollapse: !this.state.openCollapse });
   };
 
   render() {
@@ -31,11 +33,13 @@ class Master extends React.Component {
             <AppBarCustom
               classes={classes}
               open={this.state.open}
-              handleDrawerOpen={this.handleDrawerOpen}/>
+              handleDrawer={this.handleDrawer}/>
             <DrawerCustom
               classes={classes}
               open={this.state.open}
-              handleDrawerClose={this.handleDrawerClose}
+              openCollapse={this.state.openCollapse}
+              handleDrawer={this.handleDrawer}
+              handleCollapse={this.handleCollapse}
               theme={theme}/>
             <main className={classes.content}>
               <Switch>
@@ -47,6 +51,8 @@ class Master extends React.Component {
                   <AboutPage {...classes} />)}/>
                 <Route path="/login" render={() => (
                   <LoginForm {...classes} />)}/>
+                <Route path="/testcase" render={() => (
+                  <TestCasePage {...classes} />)}/>
                 <Route component={NotFoundPage} />
               </Switch>
             </main>
