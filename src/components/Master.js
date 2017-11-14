@@ -39,13 +39,13 @@ class Master extends React.Component {
               theme={theme}/>
             <main className={classes.content}>
               <Switch>
-                <Route exact path="/" render={(classes) => (
+                <Route exact path="/" render={() => (
                   <HomePage {...classes} />)}/>
-                <Route path="/fuel-savings" render={(classes) => (
+                <Route path="/fuel-savings" render={() => (
                   <FuelSavingsPage {...classes} />)}/>
-                <Route path="/about" render={(classes) => (
+                <Route path="/about" render={() => (
                   <AboutPage {...classes} />)}/>
-                <Route path="/login" render={(classes) => (
+                <Route path="/login" render={() => (
                   <LoginForm {...classes} />)}/>
                 <Route component={NotFoundPage} />
               </Switch>

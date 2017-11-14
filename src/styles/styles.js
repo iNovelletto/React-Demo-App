@@ -49,6 +49,10 @@ export const styles = theme => ({
     marginLeft: 12,
     marginRight: 36,
   },
+  loginFormPaper: {
+    padding: '20px',
+    marginTop: '50px'
+  },
   hide: {
     display: 'none',
   },

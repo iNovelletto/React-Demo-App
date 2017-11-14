@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Tooltip from 'material-ui/Tooltip';
 
 import {TextField, Button} from 'material-ui';
 
-class LoginForm extends React.Component {  
+class LoginForm extends React.Component {
   state = {
     userName: '',
     password: ''
@@ -22,57 +22,53 @@ class LoginForm extends React.Component {
     alert("hello");
   };
 
-  render () {    
+  render () {
+    const classes = this.props;
+
     return (
-      <div> 
-        <Grid 
-        container
-        justify="center">   
-          <Paper className="loginFormPaper">        
-            <Grid 
-            container 
+      <div>
+        <Grid container justify="center">
+          <Paper className={classes.loginFormPaper}>
+            <Grid
+            container
             alignItems="center"
             alignContent="center"
             justify="center"
             direction="column"
-            spacing="24">                          
-                <Grid item> 
-                  <Tooltip title="Insert your Login!" placement="bottom" enterDelay={300} leaveDelay={100}>           
-                  <TextField                                        
+            spacing={24}>
+                <Grid item>
+                  <Tooltip title="Insert your Login!" placement="bottom" enterDelay={300} leaveDelay={100}>
+                  <TextField
                     id="userName"
                     label="Login"
                     value={this.state.userName}
-                    onChange={this.handleChange('userName')}                
-                  /> 
-                  </Tooltip>           
+                    onChange={this.handleChange('userName')}
+                  />
+                  </Tooltip>
                 </Grid>
                 <Grid item>
-                  <Tooltip title="Insert your Password!" placement="bottom" enterDelay={300} leaveDelay={100}>         
-                  <TextField                    
+                  <Tooltip title="Insert your Password!" placement="bottom" enterDelay={300} leaveDelay={100}>
+                  <TextField
                     id="password"
                     label="Password"
                     value={this.state.password}
-                    onChange={this.handleChange('password')}                
-                  />     
-                  </Tooltip>       
-                </Grid >          
+                    onChange={this.handleChange('password')}
+                  />
+                  </Tooltip>
+                </Grid >
                 <Grid item>
                   <Tooltip title="Login to Apple" placement="right" enterDelay={300} leaveDelay={100}>
                     <Button onClick={() => this.submitLogin()}>
                       Login
                     </Button>
                   </Tooltip>
-                </Grid>            
-          </Grid>     
+                </Grid>
+          </Grid>
         </Paper>
       </Grid>
       </div>
     );
   }
 }
-
-LoginForm.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default LoginForm;
