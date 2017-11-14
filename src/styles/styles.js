@@ -31,7 +31,8 @@ export const styles = theme => ({
   },
   appBarLoginButton: {
     position: 'absolute',
-    right: '0'
+    right: '0',
+    marginTop: '-16px'
   },
   appBarMailButton: {
     position: 'absolute',
@@ -49,10 +50,7 @@ export const styles = theme => ({
     marginLeft: 12,
     marginRight: 36,
   },
-  loginFormPaper: {
-    padding: '20px',
-    marginTop: '50px'
-  },
+  
   hide: {
     display: 'none',
   },
@@ -101,4 +99,10 @@ export const styles = theme => ({
       marginTop: 64,
     },
   },
+  loginFormPaper: {
+    padding: '20px',  
+    paddingLeft: '50px',  
+    paddingRight: '50px',  
+    marginTop: '80px',
+  }
 });

@@ -1,25 +1,53 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Tooltip from 'material-ui/Tooltip';
-
+import {AccountCircle} from 'material-ui-icons';
 import {TextField, Button} from 'material-ui';
+import CustomInfoDialog from './CustomInfoDialog';
 
 class LoginForm extends React.Component {
   state = {
     userName: '',
-    password: ''
+    password: '',
+    dialogOpen: false,
+    dialogTitle: '',
+    dialogMessage: ''
   };
 
-  handleChange = name => event => {
+  handleChange = name => event => {    
     this.setState({
-      [name]: event.target.value,
+      [name]: event.target.value      
+    });        
+  };
+ 
+  submitLogin = () => {
+    if(this.state.userName === 'vfrias') {
+      this.setState({ 
+        dialogTitle: 'Welcome!',
+        dialogMessage: 'Frias, the React master!'
+      });
+    } else {
+      this.setState({ 
+        dialogTitle: 'Error!',
+        dialogMessage: 'Wrong Username or Password'
+      });
+    }
+
+    this.handleDialogOpen();    
+
+    this.setState({ 
+      userName: '',
+      password: ''
     });
   };
 
-  submitLogin = () => {
-    alert("hello");
+  handleDialogClose = () => {
+    this.setState({ dialogOpen: false });
+  };
+
+  handleDialogOpen = () => {
+    this.setState({ dialogOpen: true });
   };
 
   render () {
@@ -27,6 +55,12 @@ class LoginForm extends React.Component {
 
     return (
       <div>
+        <CustomInfoDialog 
+          open={this.state.dialogOpen}
+          title={this.state.dialogTitle}
+          message={this.state.dialogMessage}
+          handleClose={this.handleDialogClose}
+        />
         <Grid container justify="center">
           <Paper className={classes.loginFormPaper}>
             <Grid
@@ -36,6 +70,9 @@ class LoginForm extends React.Component {
             justify="center"
             direction="column"
             spacing={24}>
+                <Grid item>
+                  <AccountCircle style={{ width: 100, height: 100 }}/>
+                </Grid>                       
                 <Grid item>
                   <Tooltip title="Insert your Login!" placement="bottom" enterDelay={300} leaveDelay={100}>
                   <TextField
@@ -57,10 +94,20 @@ class LoginForm extends React.Component {
                   </Tooltip>
                 </Grid >
                 <Grid item>
-                  <Tooltip title="Login to Apple" placement="right" enterDelay={300} leaveDelay={100}>
-                    <Button onClick={() => this.submitLogin()}>
-                      Login
-                    </Button>
+                  <Tooltip 
+                  title={(this.state.userName && this.state.password) ? "Login to Apple" : "Login Info missing!"}//"Login to Apple" 
+                  placement="right" 
+                  enterDelay={300} 
+                  leaveDelay={100}>
+                    <div>
+                      <Button 
+                      disabled={!(this.state.userName && this.state.password)}
+                      raised 
+                      color="default"
+                      onClick={() => this.submitLogin()}>
+                        Login
+                      </Button>
+                    </div>
                   </Tooltip>
                 </Grid>
           </Grid>
