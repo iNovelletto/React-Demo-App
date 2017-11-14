@@ -21,11 +21,11 @@ const AppBarCustom = ({classes, open, handleDrawerOpen}) => {
         <IconButton className={classes.appBarFlagButton}>
           <Flag />
         </IconButton>
-        <Button className={classes.appBarLoginButton}>
-          <Link to="/login">
-          Login
-          </Link>
-        </Button>
+        <Link to="/login">
+          <Button className={classes.appBarLoginButton}>          
+            Login         
+          </Button>
+        </Link>
       </Toolbar>
     </AppBar>
   );
