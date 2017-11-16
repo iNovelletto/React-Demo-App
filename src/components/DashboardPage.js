@@ -56,8 +56,8 @@ class DashboardPage extends React.Component {
                     direction="column"
                     spacing={24}>
                         <Grid item>
-                            <Grid 
-                            container 
+                            <Grid
+                            container
                             alignItems="center"
                             alignContent="center"
                             justify="center"
@@ -69,10 +69,10 @@ class DashboardPage extends React.Component {
                                             id="dateFrom"
                                             label="From"
                                             type="date"
-                                            defaultValue="2017-05-24"                
+                                            defaultValue="2017-05-24"
                                             InputLabelProps={{shrink: true}}
                                         />
-                                    </form>   
+                                    </form>
                                 </Grid>
                                 <Grid item>
                                     <form noValidate>
@@ -80,16 +80,16 @@ class DashboardPage extends React.Component {
                                             id="dateTo"
                                             label="To"
                                             type="date"
-                                            defaultValue="2017-05-24"                
+                                            defaultValue="2017-05-24"
                                             InputLabelProps={{shrink: true}}
                                         />
-                                    </form>   
+                                    </form>
                                 </Grid>
                             </Grid>
                         </Grid>
                         <Grid item>
                             <Divider style={{color: "white"}}/>
-                        </Grid>                
+                        </Grid>
                         <Grid item>
                             <Tabs
                                 value={this.state.value}
@@ -109,7 +109,6 @@ class DashboardPage extends React.Component {
                     </Grid>
                 </Paper>
             </Grid>
-            <Doughnut data={data} />
         </div>
         );
     }

@@ -42,7 +42,7 @@
     "redux": "3.7.2",
     "redux-thunk": "2.2.0",
     "react-chartjs-2": "2.6.4",
-    "chart": "0.1.2"
+    "chart.js": "2.7.1"
   },
   "devDependencies": {
     "autoprefixer": "7.1.6",
