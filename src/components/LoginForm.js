@@ -22,10 +22,10 @@ class LoginForm extends React.Component {
   };
 
   submitLogin = () => {
-    if(this.state.userName === 'vfrias') {
+    if(this.state.userName === 'vitor') {
       this.setState({
-        dialogTitle: 'Welcome!',
-        dialogMessage: 'Frias, the React master!'
+        dialogTitle: 'Wrong Username!',
+        dialogMessage: 'Correct User name is VICTOR'
       });
     } else {
       this.setState({
@@ -74,7 +74,7 @@ class LoginForm extends React.Component {
                   <AccountCircle style={{ width: 100, height: 100 }}/>
                 </Grid>
                 <Grid item>
-                  <Tooltip title="Insert your Login!" placement="bottom" enterDelay={300} leaveDelay={100}>
+                  <Tooltip title="Insert your Login!" placement="right" enterDelay={300} leaveDelay={100}>
                   <TextField
                     id="userName"
                     label="Login"
@@ -84,7 +84,7 @@ class LoginForm extends React.Component {
                   </Tooltip>
                 </Grid>
                 <Grid item>
-                  <Tooltip title="Insert your Password!" placement="bottom" enterDelay={300} leaveDelay={100}>
+                  <Tooltip title="Insert your Password!" placement="right" enterDelay={300} leaveDelay={100}>
                   <TextField
                     id="password"
                     label="Password"

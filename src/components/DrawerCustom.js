@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Collapse from 'material-ui/transitions/Collapse';
 import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText } from 'material-ui';
 import { BeachAccess, ChevronLeft, ChevronRight, Dashboard, ExpandLess, ExpandMore, LibraryAdd, LibraryBooks, Schedule, Storage } from 'material-ui-icons';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes, theme}) => {
     return (
@@ -21,15 +21,13 @@ const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes
             </IconButton>
           </div>
           <Divider />
-          <List>
-            <NavLink to="/About" style={{ textDecoration: 'none' }}>
-              <ListItem button>
+          <List>            
+              <ListItem button component={Link} to="/About" >
                 <ListItemIcon>
-                  <Dashboard />
+                  <Dashboard/>
                 </ListItemIcon>
                 <ListItemText primary="Dashboard" />
-              </ListItem>
-            </NavLink>
+              </ListItem>            
             <ListItem button>
               <ListItemIcon>
                 <LibraryBooks />
@@ -40,15 +38,13 @@ const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes
               </ListItemIcon>
             </ListItem>
             <Collapse component="li" in={openCollapse} transitionDuration="auto" unmountOnExit>
-              <List disablePadding>
-                <NavLink to="/testcase" style={{ textDecoration: 'none' }}>
-                  <ListItem button className={classes.nested}>
+              <List disablePadding>                
+                  <ListItem button className={classes.nested} component={Link} to="/testcase">
                     <ListItemIcon>
                       <LibraryAdd />
                     </ListItemIcon>
                     <ListItemText inset primary="Add"/>
-                  </ListItem>
-                </NavLink>
+                  </ListItem>                
               </List>
             </Collapse>
             <ListItem button>
