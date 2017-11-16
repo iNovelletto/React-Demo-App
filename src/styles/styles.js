@@ -107,5 +107,11 @@ export const styles = theme => ({
     paddingLeft: '50px',
     paddingRight: '50px',
     marginTop: '80px',
+  },
+  dashboardPaper: {
+    padding: '20px',
+    paddingLeft: '50px',
+    paddingRight: '50px',
+    marginTop: '40px',
   }
 });

@@ -9,6 +9,7 @@ import AppBarCustom from './AppBarCustom';
 import DrawerCustom from './DrawerCustom';
 import LoginForm from './LoginForm';
 import TestCasePage from './TestCasePage';
+import DashboardPage from './DashboardPage';
 
 class Master extends React.Component {
   state = {
@@ -53,6 +54,8 @@ class Master extends React.Component {
                   <LoginForm {...classes} />)}/>
                 <Route path="/testcase" render={() => (
                   <TestCasePage {...classes} />)}/>
+                <Route path="/dashboard" render={() => (
+                  <DashboardPage {...classes} />)}/>
                 <Route component={NotFoundPage} />
               </Switch>
             </main>

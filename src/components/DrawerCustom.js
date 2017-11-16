@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Collapse from 'material-ui/transitions/Collapse';
 import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText } from 'material-ui';
 import { BeachAccess, ChevronLeft, ChevronRight, Dashboard, ExpandLess, ExpandMore, LibraryAdd, LibraryBooks, Schedule, Storage } from 'material-ui-icons';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes, theme}) => {
     return (
@@ -22,7 +22,7 @@ const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes
           </div>
           <Divider />
           <List>            
-              <ListItem button component={Link} to="/About" >
+              <ListItem button component={Link} to="/dashboard" >
                 <ListItemIcon>
                   <Dashboard/>
                 </ListItemIcon>
