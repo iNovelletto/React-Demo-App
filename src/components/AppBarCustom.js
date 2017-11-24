@@ -10,9 +10,9 @@ const AppBarCustom = ({classes, open, handleDrawer}) => {
     <AppBar className={classNames(classes.appBar, open && classes.appBarShift)}>
       <Toolbar disableGutters={!open}>
         <IconButton onClick={handleDrawer}>
-          <Menu />
+          <Menu className={classes.colorWhite}/>
         </IconButton>
-        <Typography type="title">
+        <Typography type="title" className={classes.colorWhite}>
           Testing
         </Typography>
         <IconButton className={classes.appBarMailButton}>

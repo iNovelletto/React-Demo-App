@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 
 /**
@@ -42,5 +43,19 @@ const TextFieldCustom = ({
     />
   );
 };
+
+TextFieldCustom.propTypes = {
+  id: PropTypes.bool.isRequired,
+  label: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  autoFocus: PropTypes.bool,
+  defaultValue: PropTypes.string,
+  disabled: PropTypes.bool,
+  error: PropTypes.bool,
+  fullWidth: PropTypes.bool,
+  required: PropTypes.bool
+};
+
 
 export default TextFieldCustom;

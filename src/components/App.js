@@ -13,7 +13,7 @@ const customTheme = createMuiTheme({
     "accent": grey,
     "secondary": amber,
     "error": red,
-    "type": "dark"
+    "type": "light"
   })
 });
 

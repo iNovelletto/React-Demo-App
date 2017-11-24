@@ -18,6 +18,7 @@ export const styles = theme => ({
     height: '100%',
   },
   appBar: {
+    backgroundColor: '#424242',
     position: 'absolute',
     zIndex: theme.zIndex.navDrawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -27,16 +28,19 @@ export const styles = theme => ({
   },
   appBarFlagButton: {
     position: 'absolute',
-    right: '80px'
+    right: '80px',
+    color: 'white'
   },
   appBarLoginButton: {
     position: 'absolute',
     right: '0',
-    marginTop: '-16px'
+    marginTop: '-16px',
+    color: 'white'
   },
   appBarMailButton: {
     position: 'absolute',
-    right: '110px'
+    right: '110px',
+    color: 'white'
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -45,6 +49,12 @@ export const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+  },
+  colorWhite: {
+    color: 'white'
+  },
+  fontSize1Rem: {
+    fontSize: '1rem'
   },
   menuButton: {
     marginLeft: 12,
@@ -55,6 +65,7 @@ export const styles = theme => ({
     display: 'none',
   },
   drawerPaper: {
+    backgroundColor: '#424242',
     position: 'relative',
     height: '100%',
     width: drawerWidth,
@@ -64,6 +75,7 @@ export const styles = theme => ({
     }),
   },
   drawerPaperClose: {
+    backgroundColor: '#424242',
     width: 60,
     overflowX: 'hidden',
     transition: theme.transitions.create('width', {

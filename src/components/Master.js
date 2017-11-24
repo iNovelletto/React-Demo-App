@@ -10,6 +10,8 @@ import DrawerCustom from './DrawerCustom';
 import LoginForm from './LoginForm';
 import TestCasePage from './TestCasePage';
 import DashboardPage from './DashboardPage';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 class Master extends React.Component {
   state = {
@@ -70,4 +72,4 @@ Master.propTypes = {
   theme: PropTypes.object.isRequired
 };
 
-export default Master;
+export default DragDropContext(HTML5Backend)(Master);
