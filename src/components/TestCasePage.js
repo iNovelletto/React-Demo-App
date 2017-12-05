@@ -25,6 +25,12 @@ class TestCasePage extends React.Component {
 			{ id: 3, text: "Item 3" }
     ];
 
+    const listTwo = [
+			{ id: 1, text: "Item 1" },
+			{ id: 2, text: "Item 2" },
+			{ id: 3, text: "Item 3" }
+    ];
+
     return (
       <Grid container component={Paper}>
         <Grid item xs={12}>
@@ -87,22 +93,30 @@ class TestCasePage extends React.Component {
       </Grid>
       <Grid item xs={12}>
         <Grid container justify="flex-start" alignItems='stretch'>
-          <Grid item xs={3}>
+          <Grid item xs={12}>
             <Typography type="title">
                   Artifacts
             </Typography>
-            <List>
-              <ListItem button>
-                <ListItemText primary="Library"/>
-              </ListItem>
-              </List>
+          </Grid>
+          <Grid item xs={3}>
+            <Container id={1} list={listOne} />
           </Grid>
           <Grid item xs={9}>
             <Grid container>
               <Grid item>
-                <Container id={1} list={listOne} />
+                <Container id={1} list={listTwo} />
               </Grid>
             </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <Grid container alignItems="flex-end" alignContent="flex-end">
+        <Grid item xs={9}/>
+          <Grid item xs={3}>
+            <Button color={'primary'} raised>
+              {'Save'}
+            </Button>
           </Grid>
         </Grid>
       </Grid>
