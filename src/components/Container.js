@@ -6,7 +6,12 @@ class Container extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { cards: props.list };
-	}
+  }
+
+  removeCard() {
+    debugger;
+    this.setState({ cards: this.state.cardsAux.filter(item => !item.isDrag) });
+  }
 
 	pushCard(card) {
     let cards = [...this.state.cards];
@@ -19,23 +24,32 @@ class Container extends Component {
 	}
 
 	moveCard(dragIndex, hoverIndex, card, isNew) {
-    let newCard = Object.assign({}, card, { isDrag: true });
-    let cardsCopy = [...this.state.cards];
-    let dragCards = this.state.cards.filter(item => item.isDrag);
+    let cards = [...this.state.cards];
+    let dragCards = cards.filter(item => item.isDrag);
 
-    if(dragCards.length > 0){
-      dragIndex = cardsCopy.indexOf(dragCards[0]);
+    if(dragCards.length > 0) {
+      let oldIndex = cards.indexOf(dragCards[0]);
+      if(oldIndex == hoverIndex)
+        return;
+      else
+        dragIndex = oldIndex;
+
       isNew = false;
     }
-    let immutableItems = isNew ?
-      [...cardsCopy.slice(0, hoverIndex), newCard, ...cardsCopy.slice(hoverIndex)] :
-      cardsCopy.map((item, index) => index === dragIndex
-        ? cardsCopy[hoverIndex]
-        : index === hoverIndex
-        ? cardsCopy[dragIndex]
-        : item);
 
-		this.setState({ cards: immutableItems });
+    if(isNew){
+      this.setState({ cards:
+        [...cards.slice(0, hoverIndex),
+          Object.assign({}, card, { isDrag: true }),
+          ...cards.slice(hoverIndex)] });
+    }
+    else
+      this.setState({ cards:
+        cards.map((item, index) => index === dragIndex
+          ? cards[hoverIndex]
+          : index === hoverIndex
+          ? cards[dragIndex]
+          : item) });
 	}
 
 	render() {
@@ -55,11 +69,12 @@ class Container extends Component {
 				{cards.map((card, i) => {
 					return (
 						<Card
-							key={card.id}
+							key={card.identifier}
 							index={i}
 							listId={this.props.id}
 							card={card}
-              moveCard={this.moveCard.bind(this)} />
+              moveCard={this.moveCard.bind(this)}
+              removeCard={this.removeCard.bind(this)} />
 					);
 				})}
 			</div>
@@ -70,7 +85,8 @@ class Container extends Component {
 const cardTarget = {
 	drop(props, monitor, component ) {
 		const { id } = props;
-		const sourceObj = monitor.getItem();
+    const sourceObj = monitor.getItem();
+
 		if ( id !== sourceObj.listId ) {
       component.pushCard(sourceObj.card);
     }

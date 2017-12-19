@@ -18,15 +18,15 @@ class TestCasePage extends React.Component {
 
   render () {
     const listOne = [
-			{ id: 1, text: 'Banana' },
-			{ id: 2, text: 'Avocado' },
-			{ id: 3, text: 'Pineapple' }
+			{ id: 1, text: 'Banana', identifier: Math.floor(Math.random() * 100001) },
+			{ id: 2, text: 'Avocado', identifier: Math.floor(Math.random() * 100001) },
+			{ id: 3, text: 'Pineapple', identifier: Math.floor(Math.random() * 100001) }
     ];
 
     const listTwo = [
-			{ id: 1, text: 'Apple', },
-			{ id: 2, text: 'Orange', },
-			{ id: 3, text: 'Blueberry', }
+			{ id: 4, text: 'Apple', identifier: Math.floor(Math.random() * 100001) },
+			{ id: 5, text: 'Orange', identifier: Math.floor(Math.random() * 100001) },
+			{ id: 6, text: 'Blueberry', identifier: Math.floor(Math.random() * 100001) }
     ];
 
     return (

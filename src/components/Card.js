@@ -25,25 +25,25 @@ class Card extends Component {
 }
 
 const cardSource = {
-   beginDrag(props) {
-     return {
-       index: props.index,
-       listId: props.listId,
-       card: props.card
-     };
-   },
+  beginDrag(props) {
+    return {
+      index: props.index,
+      listId: props.listId,
+      card: props.card
+    };
+  }
  };
 
  const cardTarget = {
   hover(props, monitor, component ) {
+    let item = monitor.getItem();
+    let sourceId = item.listId;
+    let targetId = props.listId;
+    let dragIndex = item.index;
+    let hoverIndex = props.index;
 
-    const sourceId = monitor.getItem().listId;
-    const targetId = props.listId;
-    const dragIndex = monitor.getItem().index;
-    const hoverIndex = props.index;
-    const sourceObj = monitor.getItem();
     if ( sourceId !== targetId ) {
-      props.moveCard(dragIndex, hoverIndex, sourceObj.card, true);
+      props.moveCard(dragIndex, hoverIndex, item.card, true);
     }
   }
  };
