@@ -12,23 +12,21 @@ import Container from './Container';
 
 //'default', 'inherit', 'primary', 'accent', 'contrast'
 class TestCasePage extends React.Component {
-  //, value2, value3;
-
   handleChange = () => {
 
   };
 
   render () {
     const listOne = [
-			{ id: 1, text: "Item 1" },
-			{ id: 2, text: "Item 2" },
-			{ id: 3, text: "Item 3" }
+			{ id: 1, text: 'Banana' },
+			{ id: 2, text: 'Avocado' },
+			{ id: 3, text: 'Pineapple' }
     ];
 
     const listTwo = [
-			{ id: 1, text: "Item 1" },
-			{ id: 2, text: "Item 2" },
-			{ id: 3, text: "Item 3" }
+			{ id: 1, text: 'Apple', },
+			{ id: 2, text: 'Orange', },
+			{ id: 3, text: 'Blueberry', }
     ];
 
     return (
@@ -37,8 +35,8 @@ class TestCasePage extends React.Component {
           <Grid container alignItems='center'>
             <Grid item xs={6}>
               <TextFieldCustom
-                id={"ProductId"}
-                label={"Product"}
+                id={'ProductId'}
+                label={'Product'}
                 //value={this.value1}
                 onChange={this.handleChange}
                 fullWidth={true}
@@ -55,8 +53,8 @@ class TestCasePage extends React.Component {
           <Grid container alignItems='center'>
             <Grid item xs={6}>
               <TextFieldCustom
-                id={"TestCaseNameId"}
-                label={"Test Case Name"}
+                id={'TestCaseNameId'}
+                label={'Test Case Name'}
                 //value={this.value1}
                 fullWidth={true}
                 onChange={this.handleChange}
@@ -64,8 +62,8 @@ class TestCasePage extends React.Component {
             </Grid>
             <Grid item xs={3}>
               <TextFieldCustom
-                id={"TestCaseIdentifierId"}
-                label={"Test Case Identifier"}
+                id={'TestCaseIdentifierId'}
+                label={'Test Case Identifier'}
                 //value={this.value1}
                 fullWidth={true}
                 onChange={this.handleChange}
@@ -77,8 +75,8 @@ class TestCasePage extends React.Component {
           <Grid container alignItems='center'>
             <Grid item xs={6}>
               <TextFieldCustom
-                id={"ModuleId"}
-                label={"Module"}
+                id={'ModuleId'}
+                label={'Module'}
                 //value={this.value1}
                 fullWidth={true}
                 onChange={this.handleChange}
@@ -104,7 +102,7 @@ class TestCasePage extends React.Component {
           <Grid item xs={9}>
             <Grid container>
               <Grid item>
-                <Container id={1} list={listTwo} />
+                <Container id={2} list={listTwo} />
               </Grid>
             </Grid>
           </Grid>
