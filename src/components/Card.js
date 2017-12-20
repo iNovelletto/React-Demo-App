@@ -43,7 +43,7 @@ const cardSource = {
     let hoverIndex = props.index;
 
     if ( sourceId !== targetId ) {
-      props.moveCard(dragIndex, hoverIndex, item.card, true);
+      props.onTargetHover(dragIndex, hoverIndex, item.card, true);
     }
   }
  };

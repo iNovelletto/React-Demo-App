@@ -12,22 +12,80 @@ import Container from './Container';
 
 //'default', 'inherit', 'primary', 'accent', 'contrast'
 class TestCasePage extends React.Component {
-  handleChange = () => {
+  constructor(props) {
+    super(props);
 
+    this.onCompleteDrag = this.onCompleteDrag.bind(this);
+    this.onTargetHover = this.onTargetHover.bind(this);
+
+    //this will come from props but needs identifier to be set
+    let artifacts = [
+			{ id: 1, text: 'Banana'},
+			{ id: 2, text: 'Avocado' },
+			{ id: 3, text: 'Pineapple' }
+    ];
+    //this will come from props but needs identifier to be set
+    let draggedArtifacts = [
+			{ id: 4, text: 'Apple' },
+			{ id: 5, text: 'Orange' },
+			{ id: 6, text: 'Blueberry' }
+    ]
+    let identifier = 0;
+
+    for(let i = 0; i < artifacts.length; i++){
+      artifacts[i] = Object.assign({}, artifacts[i], { identifier: identifier++ });
+    }
+    for(let i = 0; i < draggedArtifacts.length; i++){
+      draggedArtifacts[i] = Object.assign({}, draggedArtifacts[i], { identifier: identifier++ });
+    }
+
+    this.state = { artifacts, draggedArtifacts, identifier };
+  }
+
+  handleChange = () => {
   };
 
-  render () {
-    const listOne = [
-			{ id: 1, text: 'Banana', identifier: Math.floor(Math.random() * 100001) },
-			{ id: 2, text: 'Avocado', identifier: Math.floor(Math.random() * 100001) },
-			{ id: 3, text: 'Pineapple', identifier: Math.floor(Math.random() * 100001) }
-    ];
+  onCompleteDrag() {
+    let artifacts = [...this.state.draggedArtifacts];
+    let dragArtifacts = artifacts.filter(item => item.isDrag);
+    let index = artifacts.indexOf(dragArtifacts[0]);
 
-    const listTwo = [
-			{ id: 4, text: 'Apple', identifier: Math.floor(Math.random() * 100001) },
-			{ id: 5, text: 'Orange', identifier: Math.floor(Math.random() * 100001) },
-			{ id: 6, text: 'Blueberry', identifier: Math.floor(Math.random() * 100001) }
-    ];
+    this.setState({ draggedArtifacts:
+      [...artifacts.slice(0, index),
+        Object.assign({}, dragArtifacts[0], { isDrag: false }),
+        ...artifacts.slice(index + 1)] });
+	}
+
+	onTargetHover(dragIndex, hoverIndex, artifact, isNew) {
+    let artifacts = [...this.state.draggedArtifacts];
+    let dragArtifacts = artifacts.filter(item => item.isDrag);
+
+    if(dragArtifacts.length > 0) {
+      let oldIndex = artifacts.indexOf(dragArtifacts[0]);
+      if(oldIndex == hoverIndex)
+        return;
+      else
+        dragIndex = oldIndex;
+
+      isNew = false;
+    }
+
+    if(isNew){
+      this.setState({ draggedArtifacts:
+        [...artifacts.slice(0, hoverIndex),
+          Object.assign({}, artifact, { isDrag: true, identifier: this.state.identifier }),
+          ...artifacts.slice(hoverIndex)], identifier: this.state.identifier + 1 });
+    }
+    else
+      this.setState({ draggedArtifacts:
+        artifacts.map((item, index) => index === dragIndex
+          ? artifacts[hoverIndex]
+          : index === hoverIndex
+          ? artifacts[dragIndex]
+          : item) });
+	}
+
+  render () {
 
     return (
       <Grid container component={Paper}>
@@ -97,12 +155,20 @@ class TestCasePage extends React.Component {
             </Typography>
           </Grid>
           <Grid item xs={3}>
-            <Container id={1} list={listOne} />
+            <Container
+              id={1}
+              artifacts={this.state.artifacts}
+              onTargetHover={this.onTargetHover}
+              onCompleteDrag={this.onCompleteDrag} />
           </Grid>
           <Grid item xs={9}>
             <Grid container>
               <Grid item>
-                <Container id={2} list={listTwo} />
+                <Container
+                  id={2}
+                  artifacts={this.state.draggedArtifacts}
+                  onTargetHover={this.onTargetHover}
+                  onCompleteDrag={this.onCompleteDrag} />
               </Grid>
             </Grid>
           </Grid>
