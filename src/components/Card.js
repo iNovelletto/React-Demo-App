@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
+import PropTypes from 'prop-types';
 import { DragSource, DropTarget } from 'react-dnd';
 import flow from 'lodash/flow';
+import Chip from 'material-ui/Chip';
 
 const style = {
 	border: '1px dashed gray',
@@ -17,9 +18,9 @@ class Card extends Component {
 		const opacity = isDragging ? 0.4 : 1;
 
 		return connectDragSource(connectDropTarget(
-			<div style={{ ...style, opacity }}>
-				{card.text}
-			</div>
+      <div style={{ ...style, opacity }}>
+        <Chip label={card.text} />
+      </div>
 		));
 	}
 }
@@ -31,11 +32,15 @@ const cardSource = {
       listId: props.listId,
       card: props.card
     };
+  },
+  endDrag(props, monitor) {
+    if(!monitor.didDrop())
+      props.onCompleteInvalidDrag();
   }
  };
 
  const cardTarget = {
-  hover(props, monitor, component ) {
+  hover(props, monitor) {
     let item = monitor.getItem();
     let sourceId = item.listId;
     let targetId = props.listId;
@@ -48,10 +53,12 @@ const cardSource = {
   }
  };
 
-//  export default	DragSource("CARD", cardSource, (connect, monitor) => ({
-// 		connectDragSource: connect.dragSource(),
-// 		isDragging: monitor.isDragging()
-// 	}))(Card);
+ Card.propTypes = {
+  card: PropTypes.object.isRequired,
+  isDragging: PropTypes.bool,
+  connectDragSource: PropTypes.func.isRequired,
+  connectDropTarget: PropTypes.func.isRequired
+};
 
   export default flow(
     DropTarget("CARD", cardTarget, connect => ({

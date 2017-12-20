@@ -4,10 +4,6 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import TextFieldCustom from './common/TextFieldCustom';
 import Typography from 'material-ui/Typography';
-import List, {
-  ListItem,
-  ListItemText,
-} from 'material-ui/List';
 import Container from './Container';
 
 //'default', 'inherit', 'primary', 'accent', 'contrast'
@@ -17,6 +13,7 @@ class TestCasePage extends React.Component {
 
     this.onCompleteDrag = this.onCompleteDrag.bind(this);
     this.onTargetHover = this.onTargetHover.bind(this);
+    this.onCompleteInvalidDrag = this.onCompleteInvalidDrag.bind(this);
 
     //this will come from props but needs identifier to be set
     let artifacts = [
@@ -29,7 +26,7 @@ class TestCasePage extends React.Component {
 			{ id: 4, text: 'Apple' },
 			{ id: 5, text: 'Orange' },
 			{ id: 6, text: 'Blueberry' }
-    ]
+    ];
     let identifier = 0;
 
     for(let i = 0; i < artifacts.length; i++){
@@ -44,6 +41,10 @@ class TestCasePage extends React.Component {
 
   handleChange = () => {
   };
+
+  onCompleteInvalidDrag() {
+    this.setState({ draggedArtifacts: this.state.draggedArtifacts.filter(item => !item.isDrag)});
+  }
 
   onCompleteDrag() {
     let artifacts = [...this.state.draggedArtifacts];
@@ -90,7 +91,7 @@ class TestCasePage extends React.Component {
     return (
       <Grid container component={Paper}>
         <Grid item xs={12}>
-          <Grid container alignItems='center'>
+          <Grid container alignItems="center">
             <Grid item xs={6}>
               <TextFieldCustom
                 id={'ProductId'}
@@ -108,7 +109,7 @@ class TestCasePage extends React.Component {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Grid container alignItems='center'>
+          <Grid container alignItems="center">
             <Grid item xs={6}>
               <TextFieldCustom
                 id={'TestCaseNameId'}
@@ -130,7 +131,7 @@ class TestCasePage extends React.Component {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Grid container alignItems='center'>
+          <Grid container alignItems="center">
             <Grid item xs={6}>
               <TextFieldCustom
                 id={'ModuleId'}
@@ -148,7 +149,7 @@ class TestCasePage extends React.Component {
           </Grid>
       </Grid>
       <Grid item xs={12}>
-        <Grid container justify="flex-start" alignItems='stretch'>
+        <Grid container justify="flex-start" alignItems="stretch">
           <Grid item xs={12}>
             <Typography type="title">
                   Artifacts
@@ -159,7 +160,9 @@ class TestCasePage extends React.Component {
               id={1}
               artifacts={this.state.artifacts}
               onTargetHover={this.onTargetHover}
-              onCompleteDrag={this.onCompleteDrag} />
+              onCompleteDrag={this.onCompleteDrag}
+              onCompleteInvalidDrag={this.onCompleteInvalidDrag}
+              width={200}/>
           </Grid>
           <Grid item xs={9}>
             <Grid container>
@@ -168,7 +171,9 @@ class TestCasePage extends React.Component {
                   id={2}
                   artifacts={this.state.draggedArtifacts}
                   onTargetHover={this.onTargetHover}
-                  onCompleteDrag={this.onCompleteDrag} />
+                  onCompleteDrag={this.onCompleteDrag}
+                  onCompleteInvalidDrag={this.onCompleteInvalidDrag}
+                  width={500} />
               </Grid>
             </Grid>
           </Grid>

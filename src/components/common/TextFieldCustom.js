@@ -45,8 +45,8 @@ const TextFieldCustom = ({
 };
 
 TextFieldCustom.propTypes = {
-  id: PropTypes.bool.isRequired,
-  label: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   autoFocus: PropTypes.bool,

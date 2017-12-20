@@ -28,8 +28,8 @@ const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes
                 </ListItemIcon>
                 <ListItemText
                   disableTypography
-                  primary={<Typography type="subheading" className={classes.colorWhite}>Dashboard</Typography>}>
-                </ListItemText>
+                  primary={<Typography type="subheading" className={classes.colorWhite}>Dashboard</Typography>}
+                  />
               </ListItem>
             <ListItem button>
               <ListItemIcon>
@@ -37,8 +37,7 @@ const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes
               </ListItemIcon>
               <ListItemText
                 disableTypography
-                primary={<Typography type="subheading" className={classes.colorWhite}>Test Cases</Typography>}>
-              </ListItemText>
+                primary={<Typography type="subheading" className={classes.colorWhite}>Test Cases</Typography>}/>
               <ListItemIcon onClick={handleCollapse}>
               {openCollapse ? <ExpandLess className={classes.colorWhite} /> : <ExpandMore className={classes.colorWhite}/>}
               </ListItemIcon>
@@ -51,8 +50,7 @@ const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes
                     </ListItemIcon>
                     <ListItemText
                       disableTypography
-                      primary={<Typography type="subheading" className={classes.colorWhite}>Add</Typography>}>
-                    </ListItemText>
+                      primary={<Typography type="subheading" className={classes.colorWhite}>Add</Typography>}/>
                   </ListItem>
               </List>
             </Collapse>
@@ -62,8 +60,7 @@ const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes
               </ListItemIcon>
               <ListItemText
                 disableTypography
-                primary={<Typography type="subheading" className={classes.colorWhite}>Test Suites</Typography>}>
-              </ListItemText>
+                primary={<Typography type="subheading" className={classes.colorWhite}>Test Suites</Typography>}/>
             </ListItem>
             <ListItem button>
               <ListItemIcon>
@@ -71,8 +68,7 @@ const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes
               </ListItemIcon>
               <ListItemText
                 disableTypography
-                primary={<Typography type="subheading" className={classes.colorWhite}>Schedule</Typography>}>
-              </ListItemText>
+                primary={<Typography type="subheading" className={classes.colorWhite}>Schedule</Typography>}/>
             </ListItem>
             <ListItem button>
               <ListItemIcon>
@@ -80,8 +76,7 @@ const DrawerCustom = ({open, openCollapse, handleDrawer, handleCollapse, classes
               </ListItemIcon>
               <ListItemText
                 disableTypography
-                primary={<Typography type="subheading" className={classes.colorWhite}>Reports</Typography>}>
-              </ListItemText>
+                primary={<Typography type="subheading" className={classes.colorWhite}>Reports</Typography>}/>
             </ListItem>
           </List>
         </div>
