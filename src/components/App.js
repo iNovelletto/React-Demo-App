@@ -1,30 +1,30 @@
-//This components handles the App template used on every page.
-import React, {PropTypes} from 'react';
-import Header from './common/Header';
-import {connect} from 'react-redux';
+import React from 'react';
+import createPalette from 'material-ui/styles/createPalette';
+import createMuiTheme from 'material-ui/styles/createMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import withStyles from 'material-ui/styles/withStyles';
+import { grey, orange, amber, red } from 'material-ui/colors';
+import Master from './Master';
+import { styles } from '../styles/styles';
+
+const customTheme = createMuiTheme({
+  palette: createPalette({
+    "primary": orange,
+    "accent": grey,
+    "secondary": amber,
+    "error": red,
+    "type": "light"
+  })
+});
 
 class App extends React.Component {
   render() {
     return (
-      <div className="container-fluid">
-        <Header
-          loading={this.props.loading}
-        />
-        {this.props.children}
-      </div>
+      <MuiThemeProvider theme={customTheme} >
+        <Master {...this.props}/>
+      </MuiThemeProvider>
     );
   }
 }
 
-App.propTypes = {
-  children: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired
-};
-
-function mapStateToProps(state, ownProps) {
-  return {
-    loading: state.ajaxCallsInProgress > 0
-  };
-}
-
-export default connect(mapStateToProps)(App);
+export default withStyles(styles, { withTheme: true })(App);
