@@ -14,8 +14,8 @@ const style = {
 
 class Card extends Component {
 	render() {
-    const { card, isDragging, connectDragSource, connectDropTarget } = this.props;
-		const opacity = isDragging ? 0.4 : 1;
+    const { card, isDragging, connectDragSource, connectDropTarget, isExternalDrag } = this.props;
+		const opacity = isDragging || isExternalDrag ? 0.4 : 1;
 
 		return connectDragSource(connectDropTarget(
       <div style={{ ...style, opacity }}>
@@ -40,16 +40,17 @@ const cardSource = {
  };
 
  const cardTarget = {
-  hover(props, monitor) {
+  hover(props, monitor, component) {
+    if(!component.props.droppable)
+      return;
+
     let item = monitor.getItem();
     let sourceId = item.listId;
     let targetId = props.listId;
     let dragIndex = item.index;
     let hoverIndex = props.index;
 
-    if ( sourceId !== targetId ) {
-      props.onTargetHover(dragIndex, hoverIndex, item.card, true);
-    }
+    props.onTargetHover(dragIndex, hoverIndex, item.card, sourceId !== targetId);
   }
  };
 

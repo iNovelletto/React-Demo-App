@@ -49,6 +49,10 @@ class TestCasePage extends React.Component {
   onCompleteDrag() {
     let artifacts = [...this.state.draggedArtifacts];
     let dragArtifacts = artifacts.filter(item => item.isDrag);
+
+    if(dragArtifacts.length === 0)
+      return;
+
     let index = artifacts.indexOf(dragArtifacts[0]);
 
     this.setState({ draggedArtifacts:
@@ -57,21 +61,18 @@ class TestCasePage extends React.Component {
         ...artifacts.slice(index + 1)] });
 	}
 
-	onTargetHover(dragIndex, hoverIndex, artifact, isNew) {
+	onTargetHover(dragIndex, hoverIndex, artifact, isFromDiffSource) {
     let artifacts = [...this.state.draggedArtifacts];
-    let dragArtifacts = artifacts.filter(item => item.isDrag);
 
-    if(dragArtifacts.length > 0) {
-      let oldIndex = artifacts.indexOf(dragArtifacts[0]);
-      if(oldIndex == hoverIndex)
-        return;
-      else
-        dragIndex = oldIndex;
+    let dragArtifacts = isFromDiffSource ? artifacts.filter(item => item.isDrag) :
+      artifacts.filter(item => item === artifact);
 
-      isNew = false;
-    }
+    dragIndex = artifacts.indexOf(dragArtifacts[0]);
 
-    if(isNew){
+    if(dragIndex == hoverIndex)
+      return;
+
+    if(isFromDiffSource && dragArtifacts.length === 0){
       this.setState({ draggedArtifacts:
         [...artifacts.slice(0, hoverIndex),
           Object.assign({}, artifact, { isDrag: true, identifier: this.state.identifier }),
@@ -87,7 +88,6 @@ class TestCasePage extends React.Component {
 	}
 
   render () {
-
     return (
       <Grid container component={Paper}>
         <Grid item xs={12}>
@@ -162,6 +162,7 @@ class TestCasePage extends React.Component {
               onTargetHover={this.onTargetHover}
               onCompleteDrag={this.onCompleteDrag}
               onCompleteInvalidDrag={this.onCompleteInvalidDrag}
+              droppable={false}
               width={200}/>
           </Grid>
           <Grid item xs={9}>
@@ -173,6 +174,7 @@ class TestCasePage extends React.Component {
                   onTargetHover={this.onTargetHover}
                   onCompleteDrag={this.onCompleteDrag}
                   onCompleteInvalidDrag={this.onCompleteInvalidDrag}
+                  droppable={true}
                   width={500} />
               </Grid>
             </Grid>

@@ -21,10 +21,12 @@ const Container = props => {
 							key={item.identifier}
 							index={i}
 							listId={props.id}
-							card={item}
+              card={item}
+              isExternalDrag={item.isDrag}
               onTargetHover={props.onTargetHover.bind(this)}
               onCompleteDrag={props.onCompleteDrag.bind(this)}
-              onCompleteInvalidDrag={props.onCompleteInvalidDrag.bind(this)} />
+              onCompleteInvalidDrag={props.onCompleteInvalidDrag.bind(this)}
+              droppable={props.droppable} />
 					);
 				})}
 			</div>
