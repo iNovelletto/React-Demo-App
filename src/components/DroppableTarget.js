@@ -1,8 +1,8 @@
 import React from 'react';
-import Card from './Card';
+import DraggableItem from './DraggableItem';
 import { DropTarget } from 'react-dnd';
 
-const Container = props => {
+const DroppableTarget = props => {
 		const { canDrop, isOver, connectDropTarget, artifacts, width } = props;
 		const isActive = canDrop && isOver;
 		const style = {
@@ -17,15 +17,16 @@ const Container = props => {
 			<div style={{...style, backgroundColor}}>
 				{artifacts.map((item, i) => {
 					return (
-						<Card
+						<DraggableItem
 							key={item.identifier}
 							index={i}
-							listId={props.id}
-              card={item}
+							parentId={props.id}
+              item={item}
               isExternalDrag={item.isDrag}
               onTargetHover={props.onTargetHover.bind(this)}
               onCompleteDrag={props.onCompleteDrag.bind(this)}
               onCompleteInvalidDrag={props.onCompleteInvalidDrag.bind(this)}
+              onDraggableItemDelete={props.onDraggableItemDelete}
               droppable={props.droppable} />
 					);
 				})}
@@ -33,22 +34,33 @@ const Container = props => {
 		);
 };
 
-const cardTarget = {
+const dropTarget = {
 	drop(props, monitor) {
 		const { id } = props;
     const sourceObj = monitor.getItem();
 
-		if ( id !== sourceObj.listId ) {
-      props.onCompleteDrag(sourceObj.card);
+		if ( id !== sourceObj.parentId ) {
+      props.onCompleteDrag(sourceObj.item);
     }
 		return {
-			listId: id
+			parentId: id
 		};
+  },
+  canDrop(props){
+    return props.droppable;
+  },
+  //This hover is used when there are no elements in the drop target
+  hover(props, monitor) {
+    if(!props.droppable)
+      return;
+
+    if(props.artifacts.length === 0)
+      props.onTargetHover(-1, props.artifacts.length > 0 ? props.artifacts.length - 1 : 0, monitor.getItem().item, true);
   }
 };
 
-export default DropTarget("CARD", cardTarget, (connect, monitor) => ({
+export default DropTarget("DRAG", dropTarget, (connect, monitor) => ({
 	connectDropTarget: connect.dropTarget(),
 	isOver: monitor.isOver(),
 	canDrop: monitor.canDrop()
-}))(Container);
+}))(DroppableTarget);

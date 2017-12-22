@@ -4,7 +4,7 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import TextFieldCustom from './common/TextFieldCustom';
 import Typography from 'material-ui/Typography';
-import Container from './Container';
+import DroppableTarget from './DroppableTarget';
 
 //'default', 'inherit', 'primary', 'accent', 'contrast'
 class TestCasePage extends React.Component {
@@ -14,6 +14,7 @@ class TestCasePage extends React.Component {
     this.onCompleteDrag = this.onCompleteDrag.bind(this);
     this.onTargetHover = this.onTargetHover.bind(this);
     this.onCompleteInvalidDrag = this.onCompleteInvalidDrag.bind(this);
+    this.onDraggableItemDelete = this.onDraggableItemDelete.bind(this);
 
     //this will come from props but needs identifier to be set
     let artifacts = [
@@ -42,48 +43,49 @@ class TestCasePage extends React.Component {
   handleChange = () => {
   };
 
+  onDraggableItemDelete(item) {
+    let itemIndex = this.state.draggedArtifacts.indexOf(item);
+
+    this.setState({ draggedArtifacts:
+      [...this.state.draggedArtifacts.slice(0, itemIndex),
+        ...this.state.draggedArtifacts.slice(itemIndex + 1)] });
+  }
+
   onCompleteInvalidDrag() {
     this.setState({ draggedArtifacts: this.state.draggedArtifacts.filter(item => !item.isDrag)});
   }
 
-  onCompleteDrag() {
-    let artifacts = [...this.state.draggedArtifacts];
-    let dragArtifacts = artifacts.filter(item => item.isDrag);
-
-    if(dragArtifacts.length === 0)
+  onCompleteDrag(item) {
+    let addedItemIndex = this.state.draggedArtifacts.findIndex(item => item.isDrag);
+    if(addedItemIndex === -1)
       return;
 
-    let index = artifacts.indexOf(dragArtifacts[0]);
-
     this.setState({ draggedArtifacts:
-      [...artifacts.slice(0, index),
-        Object.assign({}, dragArtifacts[0], { isDrag: false }),
-        ...artifacts.slice(index + 1)] });
+      [...this.state.draggedArtifacts.slice(0, addedItemIndex),
+        Object.assign({}, this.state.draggedArtifacts[addedItemIndex], { isDrag: false }),
+        ...this.state.draggedArtifacts.slice(addedItemIndex + 1)] });
 	}
 
 	onTargetHover(dragIndex, hoverIndex, artifact, isFromDiffSource) {
-    let artifacts = [...this.state.draggedArtifacts];
-
-    let dragArtifacts = isFromDiffSource ? artifacts.filter(item => item.isDrag) :
-      artifacts.filter(item => item === artifact);
-
-    dragIndex = artifacts.indexOf(dragArtifacts[0]);
+    dragIndex = this.state.draggedArtifacts.findIndex(item => {
+      return isFromDiffSource ? item.isDrag : item === artifact;
+    });
 
     if(dragIndex == hoverIndex)
       return;
 
-    if(isFromDiffSource && dragArtifacts.length === 0){
+    if(isFromDiffSource && dragIndex === -1){
       this.setState({ draggedArtifacts:
-        [...artifacts.slice(0, hoverIndex),
+        [...this.state.draggedArtifacts.slice(0, hoverIndex),
           Object.assign({}, artifact, { isDrag: true, identifier: this.state.identifier }),
-          ...artifacts.slice(hoverIndex)], identifier: this.state.identifier + 1 });
+          ...this.state.draggedArtifacts.slice(hoverIndex)], identifier: this.state.identifier + 1 });
     }
     else
       this.setState({ draggedArtifacts:
-        artifacts.map((item, index) => index === dragIndex
-          ? artifacts[hoverIndex]
+        this.state.draggedArtifacts.map((item, index) => index === dragIndex
+          ? this.state.draggedArtifacts[hoverIndex]
           : index === hoverIndex
-          ? artifacts[dragIndex]
+          ? this.state.draggedArtifacts[dragIndex]
           : item) });
 	}
 
@@ -156,7 +158,7 @@ class TestCasePage extends React.Component {
             </Typography>
           </Grid>
           <Grid item xs={3}>
-            <Container
+            <DroppableTarget
               id={1}
               artifacts={this.state.artifacts}
               onTargetHover={this.onTargetHover}
@@ -168,12 +170,13 @@ class TestCasePage extends React.Component {
           <Grid item xs={9}>
             <Grid container>
               <Grid item>
-                <Container
+                <DroppableTarget
                   id={2}
                   artifacts={this.state.draggedArtifacts}
                   onTargetHover={this.onTargetHover}
                   onCompleteDrag={this.onCompleteDrag}
                   onCompleteInvalidDrag={this.onCompleteInvalidDrag}
+                  onDraggableItemDelete={this.onDraggableItemDelete}
                   droppable={true}
                   width={500} />
               </Grid>
