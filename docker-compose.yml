@@ -1,0 +1,17 @@
+version: '3'
+services:
+  front_prod:
+    image: orange:1.0
+    container_name: cont_front_prod
+    build:
+      context: .
+      dockerfile: docker.prod.dockerfile
+    ports:
+    - "10.2.2.51:4001:4000"
+  # front_dev:
+    # volumes:
+    # - ./dist:/usr/src/frontprod
+networks:
+  default:
+    external:
+      name: prod

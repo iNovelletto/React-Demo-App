@@ -6,6 +6,9 @@
     "npm": ">=3"
   },
   "scripts": {
+    "docker:build": "docker build -t orange:2 .",
+    "docker:run": "docker run -d -p 10.2.2.51:4001:4000 orange:2",
+    "publish": "babel-node tools/build.js && npm run docker:build && npm run docker:run",
     "transpile": "babel {file} --out-file {target}",
     "preinstall": "node tools/nodeVersionCheck.js",
     "setup": "node tools/setup/setupMessage.js && npm install && node tools/setup/setup.js",
@@ -20,7 +23,8 @@
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
     "prebuild": "npm run clean-dist && npm run lint && npm run test",
-    "build": "babel-node tools/build.js && npm run open:dist",
+    "build:run": "babel-node tools/build.js && npm run open:dist",
+    "build": "babel-node tools/build.js",
     "test": "jest",
     "test:CI": "babel-node tools/testCi.js",
     "test:cover": "npm run test -- --coverage ",
