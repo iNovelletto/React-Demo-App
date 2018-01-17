@@ -55,7 +55,7 @@ class TestCasePage extends React.Component {
     this.setState({ draggedArtifacts: this.state.draggedArtifacts.filter(item => !item.isDrag)});
   }
 
-  onCompleteDrag(item) {
+  onCompleteDrag() {
     let addedItemIndex = this.state.draggedArtifacts.findIndex(item => item.isDrag);
     if(addedItemIndex === -1)
       return;
